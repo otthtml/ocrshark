@@ -4,7 +4,7 @@ from pytesseract import Output
 from PIL import Image
 import pyautogui
 from time import sleep
-import cv2
+
 
 
 pyautogui.FAILSAFE = True
