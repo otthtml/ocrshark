@@ -3,7 +3,7 @@ Optical Character Recognition Shark is a Python package designed to hunt down a 
 
 # Usage
 1. Download the folder;
-2. Run "pip install -r requirements.txt;
+2. Run "pip install -r requirements.txt";
 3. Inside "detectStr.py", in the last "if" conditional (if \_\_name\_\_=="\_\_main\_\_", change the argument of the main() function;
 4. Call it on the command line with the command "python3 detectStr.py" (or "python detectStr.py" if you're on Windows).
 
