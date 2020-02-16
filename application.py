@@ -10,15 +10,15 @@ from time import sleep
 pyautogui.FAILSAFE = True
 c1x, c1y = 1481, 577
 c2x, c2y = 1473, 525
-delay = 0.1
-sl = -30
+delay = 0.4
+sl = -50
 
 
 def takeSS():
     """
     Function that returns screenshot
     """
-    sleep(0.5)
+    sleep(delay)
     myScreenshot = pyautogui.screenshot()
     myScreenshot.save(r'.\ss.png')
 
@@ -41,7 +41,6 @@ def main(string1):
             count += 1
             act(x, y)
             return True
-    print(count)
 
 
 def act(x, y):
@@ -66,8 +65,9 @@ if __name__=="__main__":
     sleep(2)
     while True:
         try:
-            pyautogui.scroll(sl)
-            main("Adicionar")
+            if not main("Adicionar"):
+                act(c1x, c1y)
+
         except pyautogui.FailSafeException:
             print("pyautogui FailSafeException!")
             break
