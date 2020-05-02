@@ -1,17 +1,24 @@
 import pytesseract as tess
-tess.pytesseract.tesseract_cmd = r"C:\Users\ottht\AppData\Local\Tesseract-OCR\tesseract.exe"
+tess.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 from pytesseract import Output
 from PIL import Image
 import pyautogui
 from time import sleep
 
 
+#to find the required mouse positions
+
+# import pyautogui
+# pyautogui.displayMousePosition()
 
 pyautogui.FAILSAFE = True
-c1x, c1y = 1481, 577
-c2x, c2y = 1473, 525
-delay = 0.4
-sl = -50
+c1x, c1y = 1473, 525
+c2x, c2y = 1481, 577
+c3x, c3y = 1169, 487
+
+delay = 0.2
+sl = -75
+linkedInx, linkedIny = 1187, 338 # linkedin adaptation
 
 
 def takeSS():
@@ -20,6 +27,7 @@ def takeSS():
     """
     sleep(delay)
     myScreenshot = pyautogui.screenshot()
+    # return myScreenshot
     myScreenshot.save(r'.\ss.png')
 
 
@@ -28,8 +36,6 @@ def main(string1):
     sleep(delay)
     takeSS()
     p = Image.open("ss.png") #open the screenshot
-    # p = cv2.imread(r'.\ss.png')
-    # p = cv2.cvtColor(p, cv2.COLOR_BGR2RGB)
     d = tess.image_to_data(p, output_type=Output.DICT, lang='por') #use tess to read and convert to dict
     n_boxes = len(d['level']) 
     count = 0
@@ -47,6 +53,8 @@ def act(x, y):
     mouseAction(x, y)
     mouseAction(c1x, c1y)
     mouseAction(c2x, c2y)
+    mouseAction(c3x, c3y)
+
 
     
  
@@ -63,10 +71,14 @@ def mouseAction(x, y):
 
 if __name__=="__main__":
     sleep(2)
+    # print(pyautogui.position())
     while True:
         try:
-            if not main("Adicionar"):
+            if not main("Adicionar"): #for facebook
                 act(c1x, c1y)
+            # if not main("Next"):
+            #     if not main("Conectar"):
+            #         act(c1x, c1y)
 
         except pyautogui.FailSafeException:
             print("pyautogui FailSafeException!")
